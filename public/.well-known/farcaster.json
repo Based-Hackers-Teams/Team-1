@@ -1,11 +1,16 @@
 {
+  "accountAssociation": {
+    "header": "eyJmaWQiOjgzMTgwNSwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDFjZkI0YkQyQmIxZjU1ODNGN2JhRjZGNENkMTI3ZjNlODdDOGE2QzEifQ",
+    "payload": "eyJkb21haW4iOiJtZW1lZm9yZ2UtemV0YS52ZXJjZWwuYXBwIn0",
+    "signature": "MHhlZTk2M2FiYWQ1MzRiZjJjN2M3ODIxNzAyNjk5NmIwNDMyMGJiODg2OWU4YWQ2YTViOTU0MGFhODkxOTE3MWU2N2Q5ZTZlOWIzZTNiNjEzZDA3YzUyM2EwOTgzN2MyOGM2MTA4YmNlMDQwZWNkOTgwNGI4NTdjZWYyZTNjMzQ0ODFi"
+  },
   "miniapp": {
     "version": "1",
     "imageUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760784780/titleimg_bma0sw.png",
     "name": "MemeForge",
     "subTitle": "Create the Most Viral and Creative Memes on Farcaster!",
     "description": "Create the Most Viral and Creative Memes on Farcaster!",
-    "homeUrl": "https://methodology-cartoon-wallpapers-davidson.trycloudflare.com",
+    "homeUrl": "https://memeforge-zeta.vercel.app/",
     "iconUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760785032/MF_birpkf.png",
 
     "tags": ["viral", "entertainment", "fun", "social"]

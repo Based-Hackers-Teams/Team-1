@@ -29,7 +29,7 @@ export default function Home() {
         />
         <meta
           name="fc:frame"
-          content='{"version":"next","imageUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760784780/titleimg_bma0sw.png", "button":{"title":"Forge your own meme","action":{"type":"launch_miniapp","url": "https://methodology-cartoon-wallpapers-davidson.trycloudflare.com","name":"MemeForge","splashImageUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760785032/MF_birpkf.png","splashBackgroundColor":"#000"}}}'
+          content='{"version":"next","imageUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760784780/titleimg_bma0sw.png", "button":{"title":"Forge your own meme","action":{"type":"launch_miniapp","url": "https://memeforge-zeta.vercel.app/","name":"MemeForge","splashImageUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760785032/MF_birpkf.png","splashBackgroundColor":"#000"}}}'
         />
       </Head>
 
