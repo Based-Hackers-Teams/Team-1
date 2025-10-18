@@ -1,0 +1,13 @@
+{
+  "miniapp": {
+    "version": "1",
+    "imageUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760784780/titleimg_bma0sw.png",
+    "name": "MemeForge",
+    "subTitle": "Create the Most Viral and Creative Memes on Farcaster!",
+    "description": "Create the Most Viral and Creative Memes on Farcaster!",
+    "homeUrl": "https://methodology-cartoon-wallpapers-davidson.trycloudflare.com",
+    "iconUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760785032/MF_birpkf.png",
+
+    "tags": ["viral", "entertainment", "fun", "social"]
+  }
+}
