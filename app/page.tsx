@@ -2,41 +2,27 @@
 
 import { TrendingCastFeed } from "@/components/trending-cast-feed";
 import { Leaderboard } from "@/components/leaderboard";
-// import sdk from "@farcaster/miniapp-sdk";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useUser } from "@/context/usercontext";
 import { getUser } from "@/lib/getuser";
-import Head from "next/head";
+import { Memes } from "@/components/memes";
+import { Button } from "@/components/ui/button";
+import { ImageIcon } from "lucide-react";
 
 export default function Home() {
   const { user, setUser } = useUser();
+  const [showMemes, setShowMemes] = useState(false);
 
   useEffect(() => {
-    console.log("useEffect ran");
     getUser(setUser);
   }, []);
 
   return (
     <>
-      <Head>
-        <meta
-          property="og:title"
-          content="Can you create the most viral meme ever?"
-        />
-        <meta
-          name="description"
-          content="Can your meme be the greatest!"
-        />
-        <meta
-          name="fc:frame"
-          content='{"version":"next","imageUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760784780/titleimg_bma0sw.png", "button":{"title":"Forge your own meme","action":{"type":"launch_miniapp","url": "https://memeforge-zeta.vercel.app/","name":"MemeForge","splashImageUrl": "https://res.cloudinary.com/dcw1m1rak/image/upload/v1760785032/MF_birpkf.png","splashBackgroundColor":"#000"}}}'
-        />
-      </Head>
-
       <div className="min-h-screen bg-background relative">
         <header className="border-b border-border bg-card">
           <div className="container mx-auto px-4 py-6">
-            <h1 className="text-4xl font-bold text-foreground">MemeForge </h1>
+            <h1 className="text-2xl font-bold text-foreground">MemeForge </h1>
             <p className="text-muted-foreground mt-2">
               Turn trending casts into viral memes
             </p>
@@ -45,29 +31,45 @@ export default function Home() {
 
         {/* user prof */}
 
-        <div className="w-fit flex gap-4 items-center ml-4">
-          <img
-            src={user?.avatar ?? "/default-avatar.png"}
-            alt={`${user?.username}'s avatar`}
-            className="w-10 h-10 rounded-full"
-            onError={(e) => {
-              e.currentTarget.src = "/default-avatar.png";
-            }}
-          />
-          <h4 className="">{user?.username}</h4>
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <img
+                src={user?.avatar ?? "/drake-hotline-bling-meme-template.png"}
+                alt={`${user?.username}'s avatar`}
+                className="w-10 h-10 rounded-full"
+                onError={(e) => {
+                  e.currentTarget.src = "/default-avatar.png";
+                }}
+              />
+              <h4 className="">@{user?.username}</h4>
+            </div>
+            <Button
+              variant="outline"
+              onClick={() => setShowMemes(!showMemes)}
+              className="gap-2"
+            >
+              <ImageIcon className="h-4 w-4" />
+              {showMemes ? "Hide Memes" : "Show Memes"}
+            </Button>
+          </div>
         </div>
 
         <main className="container mx-auto px-4 py-8">
-          <div className="grid gap-8 lg:grid-cols-3">
-            <div className="lg:col-span-2">
-              <TrendingCastFeed />
-            </div>
-            <div className="lg:col-span-1">
-              <div className="sticky top-8">
-                <Leaderboard />
+          {showMemes ? (
+            <Memes />
+          ) : (
+            <div className="grid gap-8 lg:grid-cols-3">
+              <div className="lg:col-span-2">
+                <TrendingCastFeed />
+              </div>
+              <div className="lg:col-span-1">
+                <div className="sticky top-8">
+                  <Leaderboard />
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </main>
       </div>
     </>

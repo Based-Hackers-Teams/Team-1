@@ -19,10 +19,12 @@ import { Badge } from "@/components/ui/badge";
 import { Sparkles, Type, ImageIcon, Download, Loader2 } from "lucide-react";
 import { toPng } from "html-to-image";
 import { toast } from "sonner";
-import type { Cast } from "@/lib/types";
+// import type { Cast } from "@/lib/types";
 import sdk from "@farcaster/miniapp-sdk";
 import { RemixModalProps, MemeTemplate } from "@/lib/types";
 import { memeTemplates } from "@/lib/memetemplates";
+// import { supabase } from "@/lib/supabase/server";
+import { useUser } from "@/context/usercontext";
 
 export function RemixModal({ cast, open, onOpenChange }: RemixModalProps) {
   const [selectedTemplate, setSelectedTemplate] = useState<MemeTemplate>(
@@ -36,6 +38,7 @@ export function RemixModal({ cast, open, onOpenChange }: RemixModalProps) {
   const [strokeColor, setStrokeColor] = useState("#000000");
   const [isGenerating, setIsGenerating] = useState(false);
   const memePreviewRef = useRef<HTMLDivElement>(null);
+  const { user } = useUser();
 
   if (!cast) return null;
 
@@ -87,10 +90,31 @@ export function RemixModal({ cast, open, onOpenChange }: RemixModalProps) {
         return;
       }
 
-      await sdk.actions.composeCast({
+      const result = await sdk.actions.composeCast({
         text: "Just made this meme on MemeForge 🎨🔥",
         embeds: [uploaded.secure_url],
       });
+
+      const cast = result?.cast;
+
+      if (cast?.hash) {
+        try {
+          await fetch("/api/memes", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              image_url: uploaded.secure_url,
+              text: cast.text ?? "",
+              cast_hash: cast.hash,
+              creator_id: Number(user?.fid),
+            }),
+          });
+        } catch (error) {
+          console.log("error inserting to memes table:", error);
+        }
+      }
+
+      console.log(cast);
       console.log("Meme ready to cast!");
       toast.success("Meme ready to cast!");
     } catch (error) {

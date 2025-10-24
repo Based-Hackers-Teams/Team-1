@@ -34,5 +34,6 @@ export interface MemeTemplate {
 
 export type User = {
   username: string | null;
-  avatar?: string | null;
+  avatar: string | null;
+  fid?: number | null;
 };
